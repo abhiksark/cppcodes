@@ -10,8 +10,9 @@ node *addNode(node*,int);
 void printAll(node*);
 int main(void){
     node* head = NULL;
-    head = addNode(head,10);
-    printAll(head);
+    head = addNode(head,10);head = addNode(head,03);
+    head = addNode(head,0);head = addNode(head,30);
+    printInOrder(head);
     return 0;
 }
 node *createNode(int data){
@@ -26,12 +27,17 @@ node *addNode(node *head,int data){
         head = newNode;
         return head;
     }
-    //
+    if(data <= head->data ){
+        head->left=addNode(head->left,data);
+    }
+    else {
+        head->right=addNode(head->right,data);
+    }
 }
-void printAll(node *head){
+void printInOrder(node *head){
     if(head==NULL)
         return;
     printAll(head->left);
-    cout<<head->data;
+    cout<<head->data<<" ";
     printAll(head->right);
 }
