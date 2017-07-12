@@ -7,12 +7,16 @@ struct node{
 };
 node *createNode(int);
 node *addNode(node*,int);
-void printAll(node*);
+void printPostOrder(node*);
+void printPreOrder(node*);
+void printInOrder(node*);
 int main(void){
     node* head = NULL;
     head = addNode(head,10);head = addNode(head,03);
     head = addNode(head,0);head = addNode(head,30);
-    printInOrder(head);
+    printInOrder(head);cout<<endl;
+    printPreOrder(head);cout<<endl;
+    printPostOrder(head);cout<<endl;
     return 0;
 }
 node *createNode(int data){
@@ -37,7 +41,21 @@ node *addNode(node *head,int data){
 void printInOrder(node *head){
     if(head==NULL)
         return;
-    printAll(head->left);
+    printInOrder(head->left);
     cout<<head->data<<" ";
-    printAll(head->right);
+    printInOrder(head->right);
+}
+void printPreOrder(node *head){
+    if(head==NULL)
+        return;
+    cout<<head->data<<" ";
+    printPreOrder(head->left);
+    printPreOrder(head->right);
+}
+void printPostOrder(node *head){
+    if(head==NULL)
+        return;
+    printPostOrder(head->left);
+    printPostOrder(head->right);
+    cout<<head->data<<" ";
 }
