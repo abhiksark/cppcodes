@@ -28,16 +28,22 @@ public:    Queue(){
         }
     }
     void deQueue(){
-        if(front==rear){
+        if(front==-1){
             cout<<"UnderFlow";
         }
-        else if(rear==size-1){
+        else if(front==rear){
             cout<<arr[rear]<<"  ";
+            front = rear = -1;
+        }
+        else if (front ==size-1){
+            cout<<arr[rear]<<"  ";
+            front =0;
         }
         else{
             cout<<arr[rear]<<"  ";
-            rear--;
+            front++;
         }
+
     }
     void printAll(){
         if(front<rear){
